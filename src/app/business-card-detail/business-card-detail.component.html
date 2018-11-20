@@ -1,0 +1,39 @@
+<div>
+  <h4>
+    Search Result ({{searchBy}}):
+  </h4>
+
+  <div>
+    <label>First Name: </label>
+    <span>
+      {{ businessCard.firstName }}
+    </span>
+  </div>
+  <div>
+    <label>Last Name: </label>
+    <span>
+      {{ businessCard.lastName }}
+    </span>
+  </div>
+  <div>
+    <label>Phone number: </label>
+    <span>
+      {{ businessCard.phoneNumber }}
+    </span>
+  </div>
+  <div>
+    <label>Email: </label>
+    <span>
+      {{ businessCard.email }}
+    </span>
+  </div>
+  <div>
+    <label>Extra text: </label>
+    <span>
+      {{ businessCard.extraText }}
+    </span>
+  </div>
+  <div>
+    <img [src]="businessCard.imageUri" [height]="270" [width]="360">
+  </div>
+</div>

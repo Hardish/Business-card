@@ -1,0 +1,87 @@
+<div>
+  <div>
+    <h3>
+      Email
+    </h3>
+    <div>
+      <label>Email: </label>
+      <input type="text" [(ngModel)]="searchConditionEmail">
+      <button (click)="searchByEmail()" class="common-margin">Search</button>
+    </div>
+
+    <div *ngIf="businessCardSearchedByEmail">
+      <app-business-card-detail [businessCard]="businessCardSearchedByEmail" [searchBy]="'by email'"></app-business-card-detail>
+    </div>
+  </div>
+
+  <br>
+  <div>
+    <h3>
+    Camera:
+    </h3>
+ 
+
+    <div>
+      <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+              [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+              [videoOptions]="videoOptions"
+              (cameraSwitched)="cameraWasSwitched($event)"
+              (initError)="handleInitError($event)"
+      ></webcam>
+      <br/>
+      <button class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
+      <button class="actionBtn" (click)="toggleWebcam();">Toggle Webcam</button>
+      <br/>
+      <button class="actionBtn" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Next Webcam</button>
+      <input id="cameraSwitchCheckbox" type="checkbox" [(ngModel)]="allowCameraSwitch"><label for="cameraSwitchCheckbox">Allow Camera Switch</label>
+      <br/>
+      
+      <button (click)="showNextWebcam(deviceId);">Activate</button>
+    </div>
+  
+    <div *ngIf="imageTaken">
+      <h3>
+        Image taken from web camera:
+      </h3>
+      <img [src]="webcamImage.imageAsDataUrl" [height]="360" width="480">
+    </div>
+  </div>
+
+  <br>
+  <div>
+    <button (click)="textDetection()">Text Detect</button>
+  </div>
+
+  <br>
+  <div *ngIf="!businessCards || businessCards.length <= 0">
+    <h3>
+      Business card is not present in database
+    </h3>
+  </div>
+  <div *ngIf="businessCards && businessCards.length > 0">
+    <h3>
+      Business cards from database
+    </h3>
+    <div *ngFor="let businessCard of businessCards; let i = index">
+      <div>
+        <span>
+          {{ i + 1 }}.
+        </span>
+        
+        <span>
+          {{ businessCard.phoneNumber }},
+        </span>
+        <span>
+          {{ businessCard.email }},
+        </span>
+
+      </div>
+      <div>
+          <img [src]="businessCard.imageUri" [height]="270" [width]="360">
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+

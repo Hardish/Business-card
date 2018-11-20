@@ -1,0 +1,21 @@
+<div>
+  <div *ngIf="!history || history.length <= 0">
+    <h3>
+      no history
+    </h3>
+  </div>
+  <div *ngIf="history && history.length > 0">
+    <h3>
+     history
+    </h3>
+    <div *ngFor="let historyItem of history; let i = index">
+      <span>
+        {{ i + 1 }}.
+      </span>
+      <span>
+        {{ historyItem }}
+      </span>
+    </div>
+  </div>
+</div>
+
